@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+    </head>
+    <body onkeydown="keyHandler(event);">
+        <canvas style="border: 1px solid black; width:500px; height:500px;" id="duk"></canvas>
+        <script>
+            var c = document.getElementById("duk");
+            var ctx = c.getContext("2d");
+            var xboll = 250, yboll = 500;
+            var yKey;
+            var xRing = 250, yRing = 100;
+            
+            function ring(x, y) {
+                ctx.beginPath();
+                ctx.arc(x, y, 10, 0, 2*Math.PI);
+                ctx.fill();
+            } function keyHandler(event) {
+                yKey = event.keyCode;
+                if(yKey == 87) {
+                    yRing = yRing - 10;
+                } else if(yKey == 83) {
+                    yRing = yRing + 10;
+                }
+            }
+            
+            
+            function repaint() {
+                ctx.clearRect(0, 0, 500, 500);
+                ring(xRing, yRing);
+            }
+            
+            window.setInterval(repaint, 20);
+        </script>
+    </body>
+</html>
