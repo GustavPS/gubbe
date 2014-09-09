@@ -4,24 +4,39 @@
     
     </head>
     <body onkeydown="keyHandler(event);">
-        <canvas style="border: 1px solid black; width:500px; height:500px;" id="duk"></canvas>
+        <canvas style="border: 1px solid black; width:500px; height:400px;" id="duk"></canvas>
         <script>
             var c = document.getElementById("duk");
             var ctx = c.getContext("2d");
             var xboll = 250, yboll = 500;
             var yKey;
-            var xRing = 250, yRing = 100;
+            var xRing = 200, yRing = 100;
             
+            // Måla ringen
             function ring(x, y) {
                 ctx.beginPath();
-                ctx.arc(x, y, 10, 0, 2*Math.PI);
+                ctx.arc(x, y, 5, 0, 2*Math.PI);
                 ctx.fill();
+            // WASD
             } function keyHandler(event) {
                 yKey = event.keyCode;
-                if(yKey == 87) {
-                    yRing = yRing - 10;
-                } else if(yKey == 83) {
-                    yRing = yRing + 10;
+                // W
+                if(yRing < 145 && yRing > 0 && xRing < 290 && xRing > 0) {
+                    if(yKey == 87 || yKey == 38) {
+                        yRing = yRing - 10;
+                        // S
+                    } else if(yKey == 83 || yKey == 40) {
+                        yRing = yRing + 10;
+                        // A
+                    } else if(yKey == 65 || yKey == 37) {
+                        xRing = xRing - 10;
+                        // D
+                    } else if(yKey == 68 || yKey == 39) {
+                        xRing = xRing + 10;
+                    }
+                } else {
+                    yRing = 100;
+                    xRing = 200;
                 }
             }
             
